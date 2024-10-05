@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <nav className="navbar" style={{ position:'fixed' ,display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width:"100%"  }}>
 
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems:'center',marginLeft:"4rem"}} >
+            <div style={{  display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems:'center',marginLeft:"4rem",width:"15%"}} >
                 <img src={logo} alt="" height={50} width={50} />
 
                 <img src={logoText} alt="" height={30} />

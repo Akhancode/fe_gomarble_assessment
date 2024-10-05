@@ -10,6 +10,7 @@ import {
   twilight,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useEffect, useState } from "react";
+import axios from "axios";
 const Component = ({ data }) => {
   const codeString = data;
   return (
@@ -22,7 +23,6 @@ const Component = ({ data }) => {
         maxHeight: "60vh",
         padding: "25px",
         overflowY: "scroll",
-        overflowAnchor: "auto",
       }}
     >
       {codeString}
@@ -381,8 +381,8 @@ function App() {
   useEffect(() => {
     if (data) {
       setIsScaled(true);
-    }else{
-      setIsScaled(false)
+    } else {
+      setIsScaled(false);
     }
   }, [data]);
 
@@ -391,10 +391,25 @@ function App() {
     setInputValue(event.target.value);
   };
 
-  const handleSubmit = () => {
-    setData(false)
-    console.log(inputValue);
-    toggleScale()
+  const handleSubmit = async () => {
+    try {
+      setData(false);
+      let backendLink = `http://localhost:9000/api/reviews`;
+      if (!inputValue) {
+        throw "Required URL ";
+      } else {
+        backendLink = backendLink + `?page=${inputValue}`;
+      }
+
+      const response = await axios.get(backendLink);
+      if (response.data) {
+        console.log(response.data);
+        setData(JSON.stringify(response.data, null, 2));
+      }
+    } catch (error) {
+      console.log(error)
+      alert(error.response.data.message||error.message || error);
+    }
   };
 
   const [isMobile, setIsMobile] = useState(false);
@@ -411,7 +426,7 @@ function App() {
     return (
       <div
         style={{
-          height:"100vh",
+          height: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

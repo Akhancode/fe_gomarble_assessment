@@ -75,25 +75,30 @@
   color: #00bcd4;
   /* Change text color on hover */
 }
+
 p:hover {
-  color:white;
+  color: white;
   font-weight: 800;
   font-size: larger;
-  
+
 }
+
 p:active {
-  color:white;
+  color: white;
   font-weight: 800;
   font-size: medium;
-  
+
 }
+
 #outputBox {
-  transform: scaleY(0);    
+  transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.5s ease;
 }
+
 #outputBox.open {
-  transform: scaleY(1); /* Scale Y to 1 when open */
+  transform: scaleY(1);
+  /* Scale Y to 1 when open */
 }
 
 .form-container {
@@ -103,19 +108,44 @@ p:active {
 }
 
 .input-field {
-  flex-grow: 7; 
+  flex-grow: 7;
   padding: 10px;
   font-size: 16px;
   border-radius: 10px;
 }
 
 .submit-button {
-  flex-grow: 3; 
+  flex-grow: 3;
   padding: 10px;
-  background-color:#006E78;
+  background-color: #006E78;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 16px;
   border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  /* Width of the scrollbar */
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(221, 228, 221, 0.1);
+  /* Background color of the scrollbar track */
+  border-radius: 10px;
+  /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #027480;;
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #027480;
+  /* Color of the scrollbar thumb on hover */
 }
