@@ -11,6 +11,7 @@ import {
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SidePanel from "./components/SidePanel";
 const Component = ({ data }) => {
   const codeString = data;
   return (
@@ -31,6 +32,7 @@ const Component = ({ data }) => {
 };
 
 function App() {
+  const [version, setVersion] = useState("v1");
   const [data, setData] = useState(false);
   const copyCode = (data) => {
     navigator.clipboard.writeText(data);
@@ -393,22 +395,26 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      setData(false);
       let backendLink = `http://localhost:9000/api/reviews`;
+      console.log(inputValue);
       if (!inputValue) {
         throw "Required URL ";
       } else {
         backendLink = backendLink + `?page=${inputValue}`;
       }
+      if(version=="v2"){
+        backendLink = backendLink + `&scrapeByLLM=true`
+      }
+      // setData(false);
 
       const response = await axios.get(backendLink);
-      if (response.data) {
+      if (response?.data) {
         console.log(response.data);
         setData(JSON.stringify(response.data, null, 2));
       }
     } catch (error) {
-      console.log(error)
-      alert(error.response.data.message||error.message || error);
+      console.log(error);
+      alert(error?.response?.data?.message || error?.message || error);
     }
   };
 
@@ -444,75 +450,104 @@ function App() {
         color: "black",
         height: "100vh",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
+
+        paddingTop: "4rem",
       }}
     >
       <Navbar />
       {/* <button onClick={toggleScale}>toggleScale</button> */}
+
       <div
         style={{
-          border: "2px dashed #14DCD2",
-          borderRadius: "1rem",
-          width: "60vw",
-          minHeight: "4rem",
+          backgroundColor: "#00272B",
+          color: "black",
+          height: "100vh",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-end",
           gap: "1rem",
-          padding: "1rem",
-        }}
-      >
-        <input
-          className="input-field"
-          placeholder="Paste product review page link"
-          onChange={handleInputChange}
-          value={inputValue}
-        />
-        <button className="submit-button" onClick={handleSubmit}>
-          Scrape
-        </button>
-      </div>
-      <div
-        id="outputBox"
-        className={`outputBox ${isScaled ? "open" : ""}`}
-        style={{
-          position: "relative",
-          maxWidth: "65vw",
-          minWidth: "60vw",
-          display: `${data ? "block" : "none"}`,
+          flex: "1 1 70%",
         }}
       >
         <div
           style={{
-            width: "100%",
+            border: "2px dashed #14DCD2",
+            borderRadius: "1rem",
+            width: "63vw",
+            minHeight: "4rem",
             display: "flex",
-            position: "absolute",
-            alignItems: "center",
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: "space-evenly",
+            gap: "1rem",
+            padding: "1rem",
           }}
         >
-          <p
-            id="copyCode"
-            style={{
-              background: "none",
-              color: "GrayText",
-              cursor: "pointer",
-              fontWeight: "600",
-              marginRight: "50px",
-              border: "0.1rem solid",
-              paddingBlock: "3px",
-              paddingInline: "6px",
-            }}
-            onClick={() => copyCode(data)}
-          >
-            copy
-          </p>
+          <input
+            className="input-field"
+            placeholder="Paste product review page link"
+            onChange={handleInputChange}
+            value={inputValue}
+          />
+          <button className="submit-button" onClick={handleSubmit}>
+            Scrape
+          </button>
         </div>
-        <Component data={data} />
+        <div
+          id="outputBox"
+          className={`outputBox ${isScaled ? "open" : ""}`}
+          style={{
+            position: "relative",
+            maxWidth: "65vw",
+            minWidth: "60vw",
+            // display: `${data ? "block" : "none"}`,
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              position: "absolute",
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <p
+              id="copyCode"
+              style={{
+                background: "none",
+                color: "GrayText",
+                cursor: "pointer",
+                fontWeight: "600",
+                marginRight: "50px",
+                border: "0.1rem solid",
+                paddingBlock: "3px",
+                paddingInline: "6px",
+              }}
+              onClick={() => copyCode(data)}
+            >
+              copy
+            </p>
+          </div>
+          <Component data={data} />
+        </div>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: "1 1 10%",
+        }}
+      >
+        <SidePanel version={version} setVersion={setVersion} />
       </div>
     </div>
   );
