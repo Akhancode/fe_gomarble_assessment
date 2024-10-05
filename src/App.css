@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #00272B;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,90 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(104, 105, 104, 0.01);
+  /* Translucent background */
+  backdrop-filter: blur(10px);
+  /* Blurred glass effect */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  /* Shadow for depth */
+  z-index: 1000;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #00272B;
+  /* White text */
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #00bcd4;
+  /* Change text color on hover */
+}
+p:hover {
+  color:white;
+  font-weight: 800;
+  font-size: larger;
+  
+}
+p:active {
+  color:white;
+  font-weight: 800;
+  font-size: medium;
+  
+}
+#outputBox {
+  transform: scaleY(0);    
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+#outputBox.open {
+  transform: scaleY(1); /* Scale Y to 1 when open */
+}
+
+.form-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.input-field {
+  flex-grow: 7; 
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.submit-button {
+  flex-grow: 3; 
+  padding: 10px;
+  background-color:#006E78;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
 }
