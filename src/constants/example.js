@@ -8,6 +8,14 @@ const examples = [
         url:"https://www.flipkart.com/walkers-electronic-7in1-mobile-soldering-iron-equipment-tool-machine-combo-kit-set-flux-paste-5-meter-wire-25-w-simple/product-reviews/itm7f26d5189f1c4?pid=SOIFZUNFRYSMGVPX&lid=LSTSOIFZUNFRYSMGVPXOLEX1C&marketplace=FLIPKART"
     },
     {
+        name:"Myntra",
+        url:"https://www.myntra.com/reviews/25072098"
+    },
+    {
+        name:"Nykaa",
+        url:"https://www.nykaa.com/aveda-rosemary-mint-shampoo/reviews/377933?skuId=377931&ptype=reviews"
+    },
+    {
         name:"2717recovery",
         url:"https://2717recovery.com/products/recovery-cream"
     }

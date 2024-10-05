@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import Navbar from "./components/navbar";
 
@@ -32,6 +32,7 @@ const Component = ({ data }) => {
 };
 
 function App() {
+  console.log(process.env.REACT_APP_BE_BASEURL)
   const [version, setVersion] = useState("v1");
   const [data, setData] = useState(false);
   const copyCode = (data) => {
@@ -395,8 +396,9 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      let backendLink = `http://localhost:9000/api/reviews`;
-      console.log(inputValue);
+      let backendLink = `${process.env.REACT_APP_BE_BASEURL}/api/reviews`;
+      console.log(process.env)
+      alert(backendLink)
       if (!inputValue) {
         throw "Required URL ";
       } else {
