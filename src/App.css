@@ -161,6 +161,7 @@ p:active {
  flex-direction: column;
  align-items: center;
  /* justify-content:center; */
+ font-size: small;
  background-color: #06859378;
 }
 .copy{
@@ -176,4 +177,43 @@ p:active {
 }
 .tooltip{
   max-width: 30vw;
+}
+
+.checkbox input[type="checkbox"] {
+  display: none;
+}
+.checkbox input[type="checkbox"]:checked + .wrapper {
+  background-color: #00272B;
+}
+.checkbox input[type="checkbox"]:checked + .wrapper .knob {
+  left: 20px;
+}
+.checkbox .wrapper {
+  background-color: darkgray;
+  border: 1px solid #666;
+  border-radius: 10px;
+  width: 42px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+.checkbox .knob {
+  background-color: white;
+  border: 1px solid #666;
+  border-radius: 100%;
+  display: inline-block;
+  margin-left: 2px;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  left: 0;
+  transition: left 100ms ease-in-out 0s;
+}
+.flexCustom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
 }

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { examples } from '../constants/example'
 import { Tooltip } from 'react-tooltip';
 
-const SidePanel = ({ version, setVersion }) => {
+const SidePanel = ({ version, setVersion, multiProcess, setMultiProcess }) => {
+
 
     //http : restrict copy to clipboard so alteranate way 
     function unsecuredCopyToClipboard(text) {
@@ -20,21 +21,26 @@ const SidePanel = ({ version, setVersion }) => {
     }
 
     const copyToClipBoard = (data) => {
-        if (navigator.clipboard) { 
+        if (navigator.clipboard) {
             // If normal copy method available, use it
             navigator.clipboard.writeText(data);
-          } else { 
+        } else {
             // Otherwise fallback to the above function
             unsecuredCopyToClipboard(data);
-          }
+        }
     };
     const changeVersion = (e) => {
         setVersion(e.target.value)
     };
+    const toggleCheck = (e) => {
+        setMultiProcess(!multiProcess)
+    };
+
 
     return (
         <div id='sidePanel'>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flex: "1 1 30%", marginBlock: "1rem" }}>
+
 
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', cursor: 'pointer' }} onChange={changeVersion}>
                     <div data-tooltip-id="#version_1">
@@ -57,6 +63,15 @@ const SidePanel = ({ version, setVersion }) => {
                         <p>This version will utilize a large language model (LLM) to scrape data, employing relevant CSS selectors to accurately target the necessary elements identified by the LLM.</p>
                     </div>
                 </Tooltip>
+            </div>
+            <div className='flexCustom'>
+                <span>Mutiple <br />Process</span>
+                <span className="checkbox">
+                    <input type="checkbox" checked={multiProcess} />
+                    <span className="wrapper" onClick={toggleCheck}>
+                        <span className="knob"></span>
+                    </span>
+                </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flex: "1 1 70%" }}>
 

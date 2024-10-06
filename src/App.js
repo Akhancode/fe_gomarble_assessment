@@ -32,6 +32,7 @@ const Component = ({ data }) => {
 
 function App() {
   const [version, setVersion] = useState("v1");
+  const [multiProcess, setMultiProcess] = useState(false)
   const [data, setData] = useState(false);
   function unsecuredCopyToClipboard(text) {
     const textArea = document.createElement("textarea");
@@ -422,6 +423,9 @@ function App() {
       if (version == "v2") {
         backendLink = backendLink + `&scrapeByLLM=true`;
       }
+      if (multiProcess) {
+        backendLink = backendLink + `&multiProcess=true`;
+      }
       // setData(false);
 
       const response = await axios.get(backendLink);
@@ -564,7 +568,7 @@ function App() {
           flex: "1 1 10%",
         }}
       >
-        <SidePanel version={version} setVersion={setVersion} />
+        <SidePanel version={version} setVersion={setVersion} multiProcess={multiProcess} setMultiProcess={setMultiProcess} />
       </div>
     </div>
   );
