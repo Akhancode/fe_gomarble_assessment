@@ -51,6 +51,12 @@ const SidePanel = ({ version, setVersion, multiProcess, setMultiProcess }) => {
                         <input type="radio" value="v2" name="version" defaultChecked={version === 'v2'} /> v2
                     </div>
                 </div>
+                <Tooltip id="#multiProcessing" className='tooltip' >
+                    <div>
+                        <h3>Multi processing [multi threading] </h3>
+                        <p>By utilizing child processes, web scraping tasks can be delegated to separate processes, improving performance and preventing blocking in the main application workflow.</p>
+                    </div>
+                </Tooltip>
                 <Tooltip id="#version_1" className='tooltip' >
                     <div>
                         <h3>Version 1 of Scrapping </h3>
@@ -64,7 +70,7 @@ const SidePanel = ({ version, setVersion, multiProcess, setMultiProcess }) => {
                     </div>
                 </Tooltip>
             </div>
-            <div className='flexCustom'>
+            <div className='flexCustom' data-tooltip-id="#multiProcessing">
                 <span>Mutiple <br />Process</span>
                 <span className="checkbox">
                     <input type="checkbox" checked={multiProcess} />

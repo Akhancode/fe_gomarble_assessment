@@ -58,6 +58,7 @@ function App() {
   };
 
   const [isScaled, setIsScaled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const toggleScale = () => {
     setData(`[
@@ -427,7 +428,7 @@ function App() {
         backendLink = backendLink + `&multiProcess=true`;
       }
       // setData(false);
-
+      setLoading(true)
       const response = await axios.get(backendLink);
       if (response?.data) {
         console.log(response.data);
@@ -436,6 +437,8 @@ function App() {
     } catch (error) {
       console.log(error);
       alert(error?.response?.data?.message || error?.message || error);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -448,6 +451,12 @@ function App() {
 
     checkWidth(); // Check on component mount
   }, []);
+  useEffect(() => {
+ 
+    if(loading){
+      setData(false)
+    }
+  }, [loading]);
 
   if (isMobile) {
     return (
@@ -515,7 +524,7 @@ function App() {
             value={inputValue}
           />
           <button className="submit-button" onClick={handleSubmit}>
-            Scrape
+            {loading?"processing ⌛":"Lets Scrape"}
           </button>
         </div>
         <div
