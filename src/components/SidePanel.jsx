@@ -2,10 +2,31 @@ import React, { useState } from 'react'
 import { examples } from '../constants/example'
 import { Tooltip } from 'react-tooltip';
 
-const SidePanel = ({version,setVersion}) => {
+const SidePanel = ({ version, setVersion }) => {
+
+    //http : restrict copy to clipboard so alteranate way 
+    function unsecuredCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('Unable to copy to clipboard', err);
+        }
+        document.body.removeChild(textArea);
+    }
 
     const copyToClipBoard = (data) => {
-        navigator.clipboard.writeText(data);
+        if (navigator.clipboard) { 
+            // If normal copy method available, use it
+            navigator.clipboard.writeText(data);
+          } else { 
+            // Otherwise fallback to the above function
+            unsecuredCopyToClipboard(data);
+          }
     };
     const changeVersion = (e) => {
         setVersion(e.target.value)

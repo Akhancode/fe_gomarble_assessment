@@ -1,4 +1,3 @@
-
 import "./App.css";
 import Navbar from "./components/navbar";
 
@@ -32,11 +31,29 @@ const Component = ({ data }) => {
 };
 
 function App() {
-  console.log(process.env.REACT_APP_BE_BASEURL)
   const [version, setVersion] = useState("v1");
   const [data, setData] = useState(false);
+  function unsecuredCopyToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand("copy");
+    } catch (err) {
+      console.error("Unable to copy to clipboard", err);
+    }
+    document.body.removeChild(textArea);
+  }
   const copyCode = (data) => {
-    navigator.clipboard.writeText(data);
+    if (navigator.clipboard) {
+      // If normal copy method available, use it
+      navigator.clipboard.writeText(data);
+    } else {
+      // Otherwise fallback to the above function
+      unsecuredCopyToClipboard(data);
+    }
   };
 
   const [isScaled, setIsScaled] = useState(false);
@@ -402,8 +419,8 @@ function App() {
       } else {
         backendLink = backendLink + `?page=${inputValue}`;
       }
-      if(version=="v2"){
-        backendLink = backendLink + `&scrapeByLLM=true`
+      if (version == "v2") {
+        backendLink = backendLink + `&scrapeByLLM=true`;
       }
       // setData(false);
 
