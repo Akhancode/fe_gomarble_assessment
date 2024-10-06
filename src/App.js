@@ -397,8 +397,6 @@ function App() {
   const handleSubmit = async () => {
     try {
       let backendLink = `${process.env.REACT_APP_BE_BASEURL}/api/reviews`;
-      console.log(process.env)
-      alert(backendLink)
       if (!inputValue) {
         throw "Required URL ";
       } else {
