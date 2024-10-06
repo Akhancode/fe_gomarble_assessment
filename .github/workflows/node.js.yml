@@ -25,7 +25,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build
-    - run: pm2 start app.config.json && pm2 list
 
    
