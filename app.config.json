@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "react-app",
+      "name": "FE_gomarble",
       "script": "npx",
       "interpreter": "none",
       "args": "serve -s build -p 3000"
