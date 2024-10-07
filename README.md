@@ -3,7 +3,8 @@
 
 ## Introduction
 
->This project features a React.js frontend that provides an interactive user interface for displaying product reviews in JSON format. It seamlessly integrates with the backend Node.js application, allowing users to access scraped review data. 
+>This project features a React.js frontend that provides an interactive user interface for displaying product reviews in JSON format. It seamlessly integrates with the backend Node.js application, allowing users to access scraped review data.
+>
 
 ## Installation
 
@@ -41,8 +42,8 @@
    - visit  [Deployed React App  ](http://gomarble-assessment.centralindia.cloudapp.azure.com)
 
 
-## FrontEnd
-   ### Repository for Front End [here](https://github.com/Akhancode/fe_gomarble_assessment). 
+## Backend
+   ### Repository for Back End [here](https://github.com/Akhancode/be_gomarble_assessment). 
 
 
 
