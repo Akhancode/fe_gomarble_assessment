@@ -5,6 +5,7 @@
 
 >This project features a React.js frontend that provides an interactive user interface for displaying product reviews in JSON format. It seamlessly integrates with the backend Node.js application, allowing users to access scraped review data.
 >
+> ![app](./public/app.gif)
 
 ## Installation
 
